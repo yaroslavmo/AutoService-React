@@ -9,7 +9,8 @@
 }
 
 .nav-item-hover:hover{
-    background-color: #2a2f2f
+    background-color: #2a2f2f;
+    cursor: pointer
 }
 
 .nav-button{

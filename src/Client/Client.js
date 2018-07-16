@@ -5,7 +5,7 @@ import './Client.css'
 const client = (props) => {
     return (
         <div className="Client  ">
-            <p id="client-id"> 1 </p>
+            <p id="client-id"> {props.id} </p>
             <p id="client-name"> {props.firstName} </p>
             <p id="client-last-name"> {props.lastName} </p>
             <p id="client-email" onClick={props.click}> {props.email} </p>

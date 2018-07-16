@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './NavBar.css';
 
 
-class NavBar extends Component{
-
-
-    render() {return (
+const NavBar = (props) => {
+    return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark  nav-custom ">
             <a className="navbar-brand ">
                 <img src={'logo.png'} className={'img-fluid'} style={{width: '250px'}} alt="Logo"/>
@@ -24,7 +22,7 @@ class NavBar extends Component{
                         <a className="nav-link nav-item-custom" style={{color:'#fff'}}  id="journal">Journal</a>
                     </li>
                     <li className="nav-item text-right nav-item-hover">
-                        <a className="nav-link nav-item-custom" style={{color:'#fff'}} id="clients">Clients</a>
+                        <a className="nav-link nav-item-custom" style={{color:'#fff'}} onClick={props.renderClients} id="clients">Clients</a>
                     </li>
                     <li className="nav-item text-right nav-item-hover">
                         <a className="nav-link nav-item-custom" style={{color:'#fff'}} id="services">Services</a>
@@ -40,7 +38,7 @@ class NavBar extends Component{
             </div>
         </nav>
 
-    )}
+    )
 }
 
 export default NavBar;
