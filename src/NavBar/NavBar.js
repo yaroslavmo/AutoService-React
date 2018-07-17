@@ -5,10 +5,10 @@ import './NavBar.css';
 const NavBar = (props) => {
     return (
         <nav className="navbar navbar-expand-lg bg-dark navbar-dark  nav-custom ">
+
             <a className="navbar-brand ">
                 <img src={'logo.png'} className={'img-fluid'} style={{width: '250px'}} alt="Logo"/>
             </a>
-
             <div className={'nav-button'}>
                 <button className="navbar-toggler flex-1" type="button" data-toggle="collapse"
                         data-target="#navbar-supported-content">
