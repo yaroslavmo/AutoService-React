@@ -16,6 +16,7 @@ const client = (props) => {
                     <span aria-hidden="true">&times;</span>
                 </button>
             </p>
+            <input type="text" onChange={props.changeName} value={props.email}/>
         </div>
     )
 };

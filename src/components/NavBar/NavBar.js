@@ -22,7 +22,7 @@ const NavBar = (props) => {
                         <a className="nav-link nav-item-custom" style={{color:'#fff'}}  id="journal">Journal</a>
                     </li>
                     <li className="nav-item text-right nav-item-hover">
-                        <a className="nav-link nav-item-custom" style={{color:'#fff'}} onClick={props.renderClients} id="clients">Clients</a>
+                        <a className="nav-link nav-item-custom"  style={{color:'#fff'}} onClick={props.renderClients} id="clients">Clients</a>
                     </li>
                     <li className="nav-item text-right nav-item-hover">
                         <a className="nav-link nav-item-custom" style={{color:'#fff'}} id="services">Services</a>

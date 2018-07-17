@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import classes from './App.css';
-import Client from './Client/Client';
-import NavBar from './NavBar/NavBar';
+import Clients from '../components/Clients/Clients'
+import NavBar from '../components/NavBar/NavBar';
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
     state = {
@@ -22,7 +23,7 @@ class App extends Component {
             ...this.state.clients[clientIndex]
         };
 
-        client.name = event.target.value;
+        client.email = event.target.value;
 
         const clients = [...this.state.clients];
         clients[clientIndex] = client;
@@ -43,51 +44,22 @@ class App extends Component {
     };
 
     render() {
-        const style = {
-            backgroundColor: 'green',
-            color: 'white',
-            font: 'inherit',
-            border: '1px solid blue',
-            padding: '8px',
-            cursor: 'pointer'
-        };
 
         let clients = null;
 
         if (this.state.showClients) {
-            clients = (
-                <div>
-                    {this.state.clients.map((client, index) => {
-                        return <Client
-                            firstName={client.firstName}
-                            lastName={client.lastName}
-                            email={client.email}
-                            key={client.id}
-                            deleteClient={() => this.deleteClientHandler(index)}/>
-                    })}
-                </div>
-            );
-
-            style.backgroundColor = 'red';
-
-        }
-
-        const AssignedClasses = [];
-        if (this.state.clients.length <= 2) {
-            AssignedClasses.push(classes.red);
-        }
-        if (this.state.clients.length <= 1) {
-            AssignedClasses.push(classes.bold);
+            clients = <Clients clients={this.state.clients}
+                               changedName={this.nameChangedHandler}
+                               deletedClient={this.deleteClientHandler}/>
         }
 
         return (
             <div className={classes.App}>
                 <NavBar renderClients={this.toggleClientsHandler}/>
-                <p className={AssignedClasses.join(' ')}>Oo</p>
-                <button
-                    style={style}
-                    onClick={this.toggleClientsHandler}>Toggle Clients
-                </button>
+                <Cockpit showClients={this.state.showClients}
+                         clients={this.state.clients}
+                         clicked={this.toggleClientsHandler}
+                />
                 {clients}
             </div>
 
