@@ -1,38 +1,55 @@
 /*width:40px*/
-.nav-color{
+.nav-color {
     background-color: #242424
 }
-.nav-item-custom{
+
+.nav-item-custom {
     margin-right: 20px;
     margin-left: 20px;
     font-size: 16pt;
 }
 
-.nav-item-hover:hover{
-    background-color: #2a2f2f
+.nav-item-hover:hover {
+    background-color: #2a2f2f;
+    cursor: pointer;
 }
 
-.nav-button{
+.nav-button {
     margin-left: auto;
 }
 
-
 @media (max-width: 157px) {
-    .img-fluid{min-width: 109px; height: 22.59px;}
+    .img-fluid {
+        min-width: 109px;
+        height: 22.59px;
+    }
 }
+
 @media (min-width: 300px) {
-    .img-fluid{min-width: 250px; height: auto;}
+    .img-fluid {
+        min-width: 250px;
+        height: auto;
+    }
 }
 
-.nav-item-custom { font-size: 1rem; }
-
+.nav-item-custom {
+    font-size: 1rem;
+}
 
 @media (min-width: 768px) {
-    .nav-item-custom { font-size: 1.5rem; }
+    .nav-item-custom {
+        font-size: 1.5rem;
+    }
 }
+
 @media (min-width: 992px) {
-    .nav-item-custom { font-size: 1.75rem; }
+    .nav-item-custom {
+        font-size: 1.75rem;
+    }
 }
+
 @media (min-width: 1200px) {
-    .nav-item-custom { font-size: 2rem; }
+    .nav-item-custom {
+        font-size: 2rem;
+    }
 }

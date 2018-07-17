@@ -2,19 +2,25 @@ import React from 'react';
 
 import './Client.css'
 
+
 const client = (props) => {
+    const style = {
+        '@media (min-width: 500px)': {
+            width:'450px'
+        }
+    };
     return (
-        <div className="Client  ">
+        <div className="Client" style={style}>
             <p id="client-id"> {props.id} </p>
-            <p id="client-name"> {props.firstName} </p>
+            <p id="client-first-name"> {props.firstName} </p>
             <p id="client-last-name"> {props.lastName} </p>
-            <p id="client-email" onClick={props.click}> {props.email} </p>
-            {/*<p className="text-right">*/}
-            {/*<button type="button" className="close text-right" aria-label="Close" id="delete-client">*/}
-            {/*<span aria-hidden="true">&times;</span>*/}
-            {/*</button>*/}
-            {/*</p>*/}
-            <input type="text" onChange={props.changed} value={props.email}/>
+            <p id="client-email"> {props.email} </p>
+            <p className="text-right">
+                <button type="button" className="close text-right" aria-label="Close" id="delete-client"
+                        onClick={props.deleteClient}>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </p>
         </div>
     )
 };
