@@ -35,7 +35,7 @@ class Clients extends Component {
 
 
     render(){
-        console.log('[Clients.js] render inside Clients')
+        console.log('[Clients.js] render inside Clients');
         return this.props.clients.map((client, index) => {
             return <ErrorBoundary key={client.id}><Client
                 firstName={client.firstName}

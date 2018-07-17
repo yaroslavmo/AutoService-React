@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar/NavBar';
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         console.log('[App.js] inside Constructor', props);
         this.state = {
@@ -18,22 +18,25 @@ class App extends Component {
         };
     }
 
-    componentWillMount(){
+    componentWillMount() {
         console.log('[willMount]')
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('[didMount]')
     }
+
     shouldComponentUpdate(nextProps, nextState) {
-        console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps ,nextState);
+        console.log('[UPDATE App.js] Inside shouldComponentUpdate', nextProps, nextState);
         return true;
     }
+
     componentWillUpdate(nextProps, nextState) {
-        console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps ,nextState);
+        console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
 
     }
-    componentDidUpdate(){
+
+    componentDidUpdate() {
         console.log('[UPDATE App.js] Inside componentDidUpdate');
     }
 
@@ -68,7 +71,7 @@ class App extends Component {
     };
 
     render() {
-console.log('[App.js] inside render')
+        console.log('[App.js] inside render');
         let clients = null;
 
         if (this.state.showClients) {

@@ -19,7 +19,7 @@ class Client extends Component {
     }
 
     render(){
-        console.log('[Client.js] render inside Client')
+        console.log('[Client.js] render inside Client');
         return (
             <div className={classes.Client}>
                 <p id="client-id"> {this.props.id} </p>
