@@ -4,11 +4,6 @@ import './Client.css'
 
 
 const client = (props) => {
-    const style = {
-        '@media (min-width: 500px)': {
-            width:'450px'
-        }
-    };
     return (
         <div className="Client" style={style}>
             <p id="client-id"> {props.id} </p>
