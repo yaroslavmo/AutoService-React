@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import classes from './App.css';
 import Client from './Client/Client';
 import NavBar from './NavBar/NavBar';
 
@@ -72,18 +72,18 @@ class App extends Component {
 
         }
 
-        const classes = [];
+        const AssignedClasses = [];
         if (this.state.clients.length <= 2) {
-            classes.push('red');
+            AssignedClasses.push(classes.red);
         }
         if (this.state.clients.length <= 1) {
-            classes.push('bold');
+            AssignedClasses.push(classes.bold);
         }
 
         return (
-            <div className="App">
+            <div className={classes.App}>
                 <NavBar renderClients={this.toggleClientsHandler}/>
-                <p className={classes.join(' ')}>Oo</p>
+                <p className={AssignedClasses.join(' ')}>Oo</p>
                 <button
                     style={style}
                     onClick={this.toggleClientsHandler}>Toggle Clients

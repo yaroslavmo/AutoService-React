@@ -1,11 +1,11 @@
 import React from 'react';
 
-import './Client.css'
+import classes from './Client.css'
 
 
 const client = (props) => {
     return (
-        <div className="Client" style={style}>
+        <div className={classes.Client}>
             <p id="client-id"> {props.id} </p>
             <p id="client-first-name"> {props.firstName} </p>
             <p id="client-last-name"> {props.lastName} </p>
