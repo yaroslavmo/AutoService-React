@@ -1,27 +1,42 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 
-import classes from './Client.css'
+import classes from './Client.css';
+import withClass from '../../../hoc/withClass';
+import Aux from '../../../hoc/Aux';
+import {AuthContext} from '../../../containers/App'
 
 
 class Client extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         console.log('[Client.js] inside Constructor', props);
+        this.inputElement = React.createRef();
 
     }
 
-    componentWillMount(){
+    componentWillMount() {
         console.log('[willMount]')
     }
 
-    componentDidMount(){
+    componentDidMount() {
         console.log('[didMount]')
+        if (this.props.position === 0) {
+            this.inputElement.current.focus();
+        }
     }
 
-    render(){
+    focus(){
+        this.inputElement.current.focus();
+    }
+
+    render() {
         console.log('[Client.js] render inside Client');
         return (
-            <div className={classes.Client}>
+            <Aux>
+                <AuthContext.Consumer>
+                {auth => auth ? <p>I'm authenticated!</p>: null}
+                </AuthContext.Consumer>
                 <p id="client-id"> {this.props.id} </p>
                 <p id="client-first-name"> {this.props.firstName} </p>
                 <p id="client-last-name"> {this.props.lastName} </p>
@@ -32,10 +47,23 @@ class Client extends Component {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </p>
-                <input type="text" onChange={this.props.changeName} value={this.props.email}/>
-            </div>
+                <input
+                    ref={this.inputElement}
+                    type="text"
+                    onChange={this.props.changeName}
+                    value={this.props.email}/>
+            </Aux>
         )
     }
 }
 
-export default Client;
+Client.propTypes = {
+    id: PropTypes.string,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    email: PropTypes.string,
+    deleteClient: PropTypes.func,
+    changeName: PropTypes.func,
+};
+
+export default withClass(Client, classes.Client);

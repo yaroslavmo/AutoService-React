@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 
 import Client from './Client/Client'
-import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
-class Clients extends Component {
+class Clients extends PureComponent {
     constructor(props){
         super(props);
         console.log('[Client.js] inside Constructor', props);
+        this.lastClientRef = React.createRef();
 
     }
 
@@ -15,16 +15,17 @@ class Clients extends Component {
     }
 
     componentDidMount(){
-        console.log('[didMount]')
+        console.log('[didMount]');
+        this.lastClientRef.current.focus();
     }
 
     componentWillReceiveProps(nextProps) {
         console.log('[UPDATE Persons.js] Inside componentWillRecieveProps', nextProps);
     }
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps ,nextState);
-        return nextProps.clients !== this.props.clients;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     console.log('[UPDATE Persons.js] Inside shouldComponentUpdate', nextProps ,nextState);
+    //     return nextProps.clients !== this.props.clients;
+    // }
     componentWillUpdate(nextProps, nextState) {
         console.log('[UPDATE Persons.js] Inside componentWillUpdate', nextProps ,nextState);
 
@@ -37,12 +38,15 @@ class Clients extends Component {
     render(){
         console.log('[Clients.js] render inside Clients');
         return this.props.clients.map((client, index) => {
-            return <ErrorBoundary key={client.id}><Client
+            return <Client
                 firstName={client.firstName}
+                position = {index}
                 lastName={client.lastName}
                 email={client.email}
+                ref={this.lastClientRef}
+                key={client.id}
                 changeName={(event) => this.props.changedName(event, client.id)}
-                deleteClient={() => this.props.deletedClient(index)}/></ErrorBoundary>
+                deleteClient={() => this.props.deletedClient(index)}/>
         });
     }
 }

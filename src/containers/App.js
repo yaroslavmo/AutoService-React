@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
 import classes from './App.css';
 import Clients from '../components/Clients/Clients'
-import NavBar from '../components/NavBar/NavBar';
+import Layout from '../components/Layout/Layout';
 import Cockpit from "../components/Cockpit/Cockpit";
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/withClass';
+
+export const AuthContext = React.createContext(false)
 
 class App extends Component {
     constructor(props) {
@@ -14,13 +18,12 @@ class App extends Component {
                 {id: '2', firstName: 'Yarik', lastName: 'Mokhurenko', email: 'yarik335@rambler.ru'},
                 {id: '3', firstName: 'Yarik', lastName: 'Mokhurenko', email: 'yarik335@rambler.ru'}
             ],
-            showClients: false
+            showClients: false,
+            toggleClicked: 0,
+            authenticated: false
         };
     }
 
-    componentWillMount() {
-        console.log('[willMount]')
-    }
 
     componentDidMount() {
         console.log('[didMount]')
@@ -31,9 +34,13 @@ class App extends Component {
         return true;
     }
 
-    componentWillUpdate(nextProps, nextState) {
-        console.log('[UPDATE App.js] Inside componentWillUpdate', nextProps, nextState);
+    static getDerivedStateFromProps(nextProps, prevProps) {
+        console.log('[getDerivedStateFromProps App.js] Inside getDerivedStateFromProps', nextProps, prevProps);
+        return prevProps
+    }
 
+    static getSnapShotBeforeUpdate() {
+        console.log('[getDerivedStateFromProps App.js] Inside getSnapShotBeforeUpdate');
     }
 
     componentDidUpdate() {
@@ -59,7 +66,6 @@ class App extends Component {
     };
 
     deleteClientHandler = (clientIndex) => {
-        // const clients = this.state.clients.slice();
         const clients = [...this.state.clients];
         clients.splice(clientIndex, 1);
         this.setState({clients: clients});
@@ -67,8 +73,19 @@ class App extends Component {
 
     toggleClientsHandler = () => {
         const doesShow = this.state.showClients;
-        this.setState({showClients: !doesShow});
+        this.setState((prevState, props) => {
+                return {
+                    showClients: !doesShow,
+                    toggleClicked: prevState.toggleClicked + 1
+                }
+            }
+        );
     };
+
+    loginHandler = () => {
+        this.setState({authenticated: true});
+    };
+
 
     render() {
         console.log('[App.js] inside render');
@@ -77,21 +94,22 @@ class App extends Component {
         if (this.state.showClients) {
             clients = <Clients clients={this.state.clients}
                                changedName={this.nameChangedHandler}
-                               deletedClient={this.deleteClientHandler}/>
+                               deletedClient={this.deleteClientHandler}
+            />
         }
 
         return (
-            <div className={classes.App}>
-                <NavBar renderClients={this.toggleClientsHandler}/>
-                <Cockpit showClients={this.state.showClients}
-                         clients={this.state.clients}
-                         clicked={this.toggleClientsHandler}
-                />
-                {clients}
-            </div>
-
+            <Aux>
+                <Layout toggleClients={this.toggleClientsHandler}>
+                    <Cockpit showClients={this.state.showClients}
+                             clients={this.state.clients}
+                             clicked={this.toggleClientsHandler}
+                             login={this.loginHandler}/>
+                    {clients}
+                </Layout>
+            </Aux>
         );
     }
 }
 
-export default App;
+export default withClass(App, classes.App);

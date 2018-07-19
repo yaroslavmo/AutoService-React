@@ -1,13 +1,15 @@
 import React from 'react'
 
+import Aux from '../../hoc/Aux'
 import classes from './Cockpit.css'
+
 
 const cockpit = (props) => {
     const assignedClasses = [];
-    let btnClass = '';
+    let btnClass = classes.Button;
 
     if (props.showClients) {
-        btnClass = classes.Red;
+        btnClass = [classes.Button, classes.Red].join(' ');
     }
 
     if (props.clients.length <= 2) {
@@ -18,12 +20,13 @@ const cockpit = (props) => {
     }
 
     return (
-        <div className={classes.Cockpit}>
+        <Aux>
             <p className={assignedClasses.join(' ')}>Oo</p>
             <button className={btnClass}
                     onClick={props.clicked}>Toggle Clients
             </button>
-        </div>
+            <button onClick={props.login}>Log in</button>
+        </Aux>
     );
 };
 export default cockpit;
