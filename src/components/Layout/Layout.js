@@ -6,7 +6,7 @@ const Layout = (props) => {
 
     return (
         <Aux>
-        <NavBar renderClients={props.toggleClients}  dark={true}/>
+        <NavBar />
         {props.children}
         </Aux>
 );

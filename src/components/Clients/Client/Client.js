@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import classes from './Client.css';
 import withClass from '../../../hoc/withClass';
 import Aux from '../../../hoc/Aux';
-import {AuthContext} from '../../../containers/App'
+import {AuthContext} from '../../../App'
 
 
 class Client extends Component {
